@@ -40,12 +40,12 @@ class FrontpageController extends Controller
     $blog = PostTypeModel::where('id','3')->first();
     $blogs = PostModel::where('post_type','3')->orderBy('post_order','asc')->take(5)->get();
     $frontpageData = PostTypeModel::where('id','10')->first();
-    $commitment = PostModel::where(['post_type'=> $frontpageData->id , 'id' => '28'])->with('images')->first();
-    $research = PostModel::where(['post_type'=> $frontpageData->id , 'id' => '29'])->with('associatePosts')->first();
-    $strength = PostModel::where(['post_type'=> $frontpageData->id , 'id' => '30'])->first();
-    $team = PostModel::where(['post_type'=> $frontpageData->id , 'id' => '31'])->first();
+    // $commitment = PostModel::where(['post_type'=> $frontpageData->id , 'id' => '28'])->with('images')->first();
+    // $research = PostModel::where(['post_type'=> $frontpageData->id , 'id' => '29'])->with('associatePosts')->first();
+    // $strength = PostModel::where(['post_type'=> $frontpageData->id , 'id' => '30'])->first();
+    // $team = PostModel::where(['post_type'=> $frontpageData->id , 'id' => '31'])->first();
     // dd($frontpageData, $commitment , $strength,$research,$team);
-    return view('themes.default.frontpage', compact('banners','about','missions','mission','vision','goal','blog','blogs','frontpageData','commitment','strength','research','team'));
+    return view('themes.default.frontpage', compact('banners','about','missions','mission','vision','goal','blog','blogs','frontpageData'));
   }
 
   public function posttype($uri){

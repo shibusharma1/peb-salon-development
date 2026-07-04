@@ -1,0 +1,61 @@
+
+.hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(109, 27, 71, 0.92) 0%,
+    rgba(177, 50, 122, 0.82) 45%,
+    rgba(177, 50, 122, 0.25) 100%
+  );
+}
+
+.price-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+  transition: 0.3s ease;
+  flex-shrink: 0;
+}
+
+.price-nav:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.active-price-nav {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border-color: transparent;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+#threading,
+#waxing,
+#facial,
+#nails,
+#massage,
+#eyelashes,
+#ipl {
+  scroll-margin-top: 180px;
+}
+
+.active-price-nav {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+
+  color: white;
+
+  border-color: transparent;
+
+  box-shadow: 0 10px 30px rgba(177, 50, 122, 0.25);
+}

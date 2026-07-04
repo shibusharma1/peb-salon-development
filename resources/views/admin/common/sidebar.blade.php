@@ -67,13 +67,13 @@
                                 </a>
                             </li>
                             <!-- @if (Auth::id() == 1)
-                                <li>
+<li>
                                     <a href="{{ url('admin/postcategory') }}">
                                         <span class="fa fa-arrows"></span>
                                         Post Categories
                                     </a>
                                 </li>
-                            @endif -->
+@endif -->
                         @endif
                         <!-- Post Type List -->
                         @if ($posttype)
@@ -151,6 +151,31 @@
                 <li class="">
                     <a class="accordion-toggle">
                         <span class="glyphicon glyphicon-user text-info"></span>
+                        <span class="sidebar-title"> Manage Products </span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li>
+                            <a href="{{ route('products.index') }}">
+                                <span class="fa fa fa-arrows-h"></span>
+                                Products
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('products_categories.index') }}">
+                                <span class="fa fa fa-arrows-h"></span>
+                               Product Categories
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+
+            @if (checkAuth(9))
+                <li class="">
+                    <a class="accordion-toggle">
+                        <span class="glyphicon glyphicon-user text-info"></span>
                         <span class="sidebar-title"> Manage Users </span>
                         <span class="caret"></span>
                     </a>
@@ -178,15 +203,14 @@
             @endif
 
             <li class="">
-                @if (Request::segment(2) == 'contact_us' ||
-                    Request::segment(2) == 'application')
+                @if (Request::segment(2) == 'contact_us' || Request::segment(2) == 'application')
                     <a class="accordion-toggle menu-open">
-                @else
-                    <a class="accordion-toggle">
+                    @else
+                        <a class="accordion-toggle">
                 @endif
-                    <span class="glyphicon glyphicon-user text-info"></span>
-                    <span class="sidebar-title">Applications & Inquiries</span>
-                    <span class="caret"></span>
+                <span class="glyphicon glyphicon-user text-info"></span>
+                <span class="sidebar-title">Applications & Inquiries</span>
+                <span class="caret"></span>
                 </a>
                 <ul class="nav sub-nav">
                     <li class="{{ Request::segment(2) == 'application' ? 'active' : '' }}">
