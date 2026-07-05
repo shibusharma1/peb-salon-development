@@ -27,7 +27,7 @@
             </div>
           </div>
 
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label for="inputStandard" class="col-lg-3 control-label">Caption</label>
             <div class="col-lg-6">
               <div class="bs-component">
@@ -35,7 +35,7 @@
                   value="{{$data->caption}}" />
               </div>
             </div>
-          </div> -->
+          </div> 
 
           <div class="form-group">
             <label class="col-lg-3 control-label" for="textArea2">Content</label>
@@ -67,7 +67,7 @@
           </div>
           <?php */?>
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label class="col-lg-3 control-label" for="link">VideoLink</label>
             <div class="col-lg-6">
               <div class="bs-component">
@@ -77,7 +77,7 @@
                 <input type="text" class="form-control" name="link" placeholder="Link of youtube video" value="{{$data->link}}" /> <br /> Example: https://youtube.com/iwhpS4ow7Zc
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <!-- <div class="form-group">
             <label class="col-lg-3 control-label" for="banner">Picture</label>
@@ -88,7 +88,7 @@
               ( Width: 1900px, Height:560px all time fix size )
             </div>
 
-          </div> -->
+          </div> 
 
           <!-- @if($data->picture != '' or $data->picture != null)
             <div class="form-group">

@@ -8,6 +8,17 @@ class PostCategoryModel extends Model
 {
     protected $table = 'cl_post_categories';
     protected $fillable = [
-    	'post_type','category','category_caption','category_content','uri','ordering','thumbnail'
+        'post_type',
+        'category',
+        'category_caption',
+        'category_content',
+        'uri',
+        'ordering',
+        'thumbnail'
     ];
+    
+    public function postType()
+    {
+        return $this->belongsTo(PostTypeModel::class, 'post_type', 'id');
+    }
 }

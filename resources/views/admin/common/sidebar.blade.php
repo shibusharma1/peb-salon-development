@@ -66,14 +66,14 @@
                                     Post Types
                                 </a>
                             </li>
-                            <!-- @if (Auth::id() == 1)
-<li>
+                            @if (Auth::id() == 1 || checkAuth(4))
+                                <li>
                                     <a href="{{ url('admin/postcategory') }}">
                                         <span class="fa fa-arrows"></span>
                                         Post Categories
                                     </a>
                                 </li>
-@endif -->
+                            @endif
                         @endif
                         <!-- Post Type List -->
                         @if ($posttype)
@@ -95,33 +95,33 @@
                 </li>
             @endif
 
-            {{-- @if (checkAuth(4))
-      <li class="">
-        @if (Request::segment(2) == 'imagecategory' || Request::segment(2) == 'imagegallery')
-        <a class="accordion-toggle menu-open" href="avoid:javascript;">
-          @else
-          <a href="avoid:javascript;" class="accordion-toggle">
+            @if (checkAuth(4))
+                <li class="">
+                    @if (Request::segment(2) == 'imagecategory' || Request::segment(2) == 'imagegallery')
+                        <a class="accordion-toggle menu-open" href="avoid:javascript;">
+                        @else
+                            <a href="avoid:javascript;" class="accordion-toggle">
+                    @endif
+                    <span class="fa fa-file-image-o text-info"></span>
+                    <span class="sidebar-title"> Manage Photo Gallery </span>
+                    <span class="caret"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li class="{{ Request::segment(2) == 'imagecategory' ? 'active' : '' }}">
+                            <a href="{{ url('admin/imagecategory') }}">
+                                <span class="fa fa fa-arrows-h"></span>
+                                Gallery Category
+                            </a>
+                        </li>
+                        <li class="{{ Request::segment(2) == 'imagegallery' ? 'active' : '' }}">
+                            <a href="{{ url('admin/imagegallery') }}">
+                                <span class="fa fa fa-arrows-h"></span>
+                                Photos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             @endif
-            <span class="fa fa-file-image-o text-info"></span>
-            <span class="sidebar-title"> Manage Photo Gallery </span>
-            <span class="caret"></span>
-          </a>
-          <ul class="nav sub-nav">
-            <li class="{{ (Request::segment(2) == 'imagecategory') ? 'active' : ''}}">
-              <a href="{{ url('admin/imagecategory') }}">
-                <span class="fa fa fa-arrows-h"></span>
-                Gallery Category
-              </a>
-            </li>
-            <li class="{{ (Request::segment(2) == 'imagegallery') ? 'active' : ''}}">
-              <a href="{{ url('admin/imagegallery') }}">
-                <span class="fa fa fa-arrows-h"></span>
-                Photos
-              </a>
-            </li>
-          </ul>
-      </li>
-      @endif --}}
             {{-- @if (checkAuth(5))
       <li class="">
         <a href="avoid:javascript;" class="accordion-toggle">
@@ -146,7 +146,7 @@
       </li>
       @endif --}}
 
-
+            {{-- 
             @if (checkAuth(9))
                 <li class="">
                     <a class="accordion-toggle">
@@ -169,7 +169,7 @@
                         </li>
                     </ul>
                 </li>
-            @endif
+            @endif --}}
 
 
             @if (checkAuth(9))
@@ -209,20 +209,20 @@
                         <a class="accordion-toggle">
                 @endif
                 <span class="glyphicon glyphicon-user text-info"></span>
-                <span class="sidebar-title">Applications & Inquiries</span>
+                <span class="sidebar-title">Appointments</span>
                 <span class="caret"></span>
                 </a>
                 <ul class="nav sub-nav">
-                    <li class="{{ Request::segment(2) == 'application' ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::segment(2) == 'application' ? 'active' : '' }}">
                         <a href="{{ url('inquiry/application') }}">
                             <span class="fa fa fa-arrows-h"></span>
                             Applications
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ Request::segment(2) == 'contact_us' ? 'active' : '' }}">
                         <a href="{{ url('inquiry/contact_us') }}">
                             <span class="fa fa fa-arrows-h"></span>
-                            Contact Us
+                            Appointments Booked
                         </a>
                     </li>
                 </ul>
@@ -244,4 +244,5 @@
                 </a>
             </div>
     </div>
+
 </aside>

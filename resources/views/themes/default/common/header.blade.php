@@ -4,170 +4,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kantipur PLL</title>
-    <link rel="stylesheet" href="{{ asset('themes-assets/css/uikit.css')}}" />
-    <script src="{{ asset('themes-assets/js/uikit.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('themes-assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{ asset('themes-assets/css/global.css')}}">
-    <script src="https://kit.fontawesome.com/7254a5967d.js" crossorigin="anonymous"></script>
+    <title>@yield('title', $setting->site_name)</title>
+    <meta name="description"
+        content="Experience luxury beauty treatments, hair styling, skin care, spa therapies and bridal services at Professional Elegance Beauty Salon.">
+    <meta name="keywords" content="@yield('meta_keyword', $setting->meta_keyword)">
+    <meta name="author" content="{{ $setting->site_name }}">
+    <meta name="description" content="@yield('meta_description', $setting->meta_description)">
+    <link rel="icon" href="{{ asset('assets/favicon/favicon.png') }}">
+    <!-- Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <!-- Remix Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+  
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pricing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bookappointment.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/call-ring.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastr.css') }}">
 
-     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"/>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
-        .toast {
-            opacity: .9 !important;
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
         }
     </style>
-
-    <!---------------- Fav icon starts --------------------->
-    	<link rel="icon" type="image/x-icon" href="{{asset('assets/favicon/favicon.ico')}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/favicon/favicon-96x96.png')}}">
-        <link rel="apple-touch-icon" href="{{asset('assets/favicon/apple-touch-icon.png')}}">
-        <link rel="manifest" href="{{asset('assets/favicon/site.webmanifest')}}">
-    <!---------------- Fav icon stops ----------------------->
-
-    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6878d1a3bc8a74001956c4fe&product=inline-share-buttons' async='async'></script>
-
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="@yield('title')"/>
-    <meta property="og:url" content="{{url()->current()}}"/>
-    <meta property="og:site_name" content="{{$setting->site_name}}"/>
-    <meta property="og:description" content="@yield('meta_description')"/>
-    @if (trim($__env->yieldContent('thumbnail')))
-	   <meta property="og:image" content="{{ asset('uploads/original/' ) }}/@yield('thumbnail')" />
-	@else
-	   <meta property="og:image" content="{{asset('theme-assets/images/favicon.png')}}" />
-	@endif
-    <meta property="og:image:width" content="1000"/>
-    <meta property="og:image:height" content="600"/>
-    @if (trim($__env->yieldContent('thumbnail')))
-    <meta name="twitter:image" content="{{ asset('uploads/original/' ) }}/@yield('thumbnail')"/>
-    @else
-    <meta property="twitter:image" content="{{ asset('theme-assets/images/logo.png') }}"/>
-    @endif
-    <meta name="twitter:url" content="{{url()->current()}}">
-    <meta name="twitter:title" content="@yield('title')">
-    <meta name="twitter:description" content="@yield('meta_description')">
-    <meta name="twitter:card" content="summary_large_image"/>
-
 </head>
 
 <body>
-	@include('themes.default.common.response')
-    <div id="preloader" class="preloader uk-flex uk-flex-middle uk-flex-center">
-        <div class="loader"> <img src="{{ asset('themes-assets/img/logo.png') }}" alt="" width="200" class="uk-logo-white"> </div>
-    </div>
-    <!-- navbar section start-->
-    <!-- Header start -->
-    <div uk-sticky="start: 300; animation: uk-animation-slide-top; cls-active:uk-navbar-sticky; sel-target:.uk-navbar-container;" uk-scrollspy="target: [uk-scrollspy-class], .uk-navbar, li; cls: uk-animation-slide-bottom-small; delay: 50; repeat: false;">
-        <!-- Main Menu -->
-        <div class="uk-visible@l uk-main-header-transparent uk-navbar-container uk-navbar-transparent">
-            <div class="uk-container uk-container-large shadow-lg">
-                <nav class="uk-navbar d-flex uk-flex-middle" uk-navbar="mode: hover; delay-show: 300; delay-hide: 500">
-                    <div class="uk-navbar-left">
-                        <a class="uk-navbar-item uk-logo " href="{{ url('/') }}">
-                            <img src="{{ asset('themes-assets/img/logo.png') }}" alt="" width="120" class="uk-logo-white">
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="header-wrapper backdrop-blur-xl border-b">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10">
+                <div class="flex items-center justify-between h-24">
+                    <!-- Logo -->
+                    <a href="./" class="flex items-center gap-3">
+                        <img src="{{ asset('assets/img/logo-white-2.png') }}" class="h-14"
+                            alt="{{ $setting->site_name }}">
+                        <!-- <div>
+                            <h3 class="heading-font text-3xl text-white">
+                                Elegance Beauty
+                            </h3>
+                            <p class="text-xs tracking-[4px] uppercase text-white/80">
+                                Professional Salon
+                            </p>
+                        </div> -->
+                    </a>
+                    <!-- Menu -->
+                    {{-- <nav class="hidden lg:flex items-center gap-6">
+                        <a href="./" class="nav-link active">
+                            Home
                         </a>
-                    </div>
-                    <div class="uk-navbar-center ">
-                        <ul class="uk-navbar-nav uk-position-relative">
-							@foreach ($navigations as $row)
-								@if ($row->id != '2')
-                            		<li><a href="{{ url('page/' . posttype_url($row->uri)) }}">{{ $row->post_type }}</a></li>
-								@else
-									<li>
-										<a>{{ $row->post_type }}<span uk-navbar-parent-icon></span></a>
-										<div class="uk-navbar-dropdown">
-											<ul class="uk-nav uk-navbar-dropdown-nav">
-												@foreach ($services as $service)
-													<li><a href="{{url(geturl($service['uri'],$service['page_key']))}}">{{$service->post_title}} </a></li>
-												@endforeach
-											</ul>
-										</div>
-									</li>
-								@endif
-							@endforeach
-                        </ul>
-                    </div>
-                    <div class="uk-navbar-right">
-                        <div class="uk-flex uk-flex-middle uk-flex-right">
-                            <div class="uk-footer-icon">
-                                <a href="{{ $setting->facebook_link }}" class="uk-icon-button " uk-icon="facebook" style="background: #342F7F!important; border-radius: 10px;"></a>
-                                <a href="{{ $setting->instagram_link }}" class="uk-icon-button " uk-icon="instagram" style="background: #BA0202!important; border-radius: 10px;"></a>
-                                <a href="{{ $setting->twitter_link }}" class="uk-icon-button " uk-icon="x" style="background: #000!important;border-radius: 10px;"></a>
-                                <a href="{{ $setting->youtube_link }}" class="uk-icon-button" uk-icon="youtube" style="background: #D44139!important; border-radius: 10px;"></a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!-- end main menu -->
-        <!-- mobile menu -->
-        <div class="uk-header-mobile uk-hidden@l shadow-lg" uk-header="">
-            <div class="uk-navbar-container bg-white">
-                <div class="uk-container uk-container-expand">
-                    <nav class="uk-navbar">
-                        <div class="uk-navbar-left">
-                            <a href="{{ url('/') }}" class=" uk-navbar-item">
-                                <img alt="" loading="eager" src="{{ asset('themes-assets/img/logo.png') }}" width="120">
-                            </a>
-                        </div>
-                        <div class="uk-navbar-right">
-                            <button class="uk-button uk-button-default uk-can-btn" type="button" uk-toggle="target: #offcanvas-flip"><i class="fa-solid fa-bars"></i></button>
+                        <a href="about.php" class="nav-link">
+                            About
+                        </a>
+                        <a href="services.php" class="nav-link">
+                            Services
+                        </a>
+                        <a href="offers.php" class="nav-link">
+                            Offers
+                        </a>
+                        <a href="pricing.php" class="nav-link">
+                            Pricing
+                        </a>
+                        <a href="gallery.php" class="nav-link">
+                            Gallery
+                        </a>
+                        <a href="contact.php" class="nav-link">
+                            Contact
+                        </a>
+                    </nav> --}}
+                    <nav class="hidden lg:flex items-center gap-6">
 
-                            <div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true">
-                                <div class="uk-offcanvas-bar uk-width-1-1 uk-padding-remove uk-bg-light">
-                                    <div class="uk-offcanvas-header uk-flex uk-flex-between uk-flex-middle">
-                                        <div>
-                                            <a class="uk-navbar-item uk-logo " href="{{ url('/') }}">
-                                                <img src="{{ asset('themes-assets/img/logo.png') }}" alt="" width="120" class="uk-logo-white">
+                        <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
+                            Home
+                        </a>
+
+                        @foreach ($navigations as $row)
+                            @if ($row->id != 2)
+                                <a href="{{ url('page/' . posttype_url($row->uri)) }}" class="nav-link">
+                                    {{ $row->post_type }}
+                                </a>
+                            @else
+                                <div class="relative group">
+
+                                    <button class="nav-link flex items-center gap-2">
+                                        {{ $row->post_type }}
+                                        <i class="ri-arrow-down-s-line"></i>
+                                    </button>
+
+                                    <div
+                                        class="absolute left-0 top-full mt-2 w-60 bg-white rounded-xl shadow-xl hidden group-hover:block">
+
+                                        @foreach ($services as $service)
+                                            <a href="{{ url(geturl($service['uri'], $service['page_key'])) }}"
+                                                class="block px-5 py-3 hover:bg-gray-100">
+
+                                                {{ $service->post_title }}
+
                                             </a>
-                                        </div>
-                                        <div>
-                                            <button class="uk-offcanvas-close" type="button" uk-close></button>
-                                        </div>
-                                    </div>
-                                    <div class="uk-offcanvas-body uk-padding-small">
-                                        <ul class="uk-offcanvas-nav uk-position-relative" uk-nav="multiple: true;">
-                                            <li><a href="{{ url('/') }}">Home</a></li>
-							                @foreach ($navigations as $row)
-                                                @if ($row->id != '2')
-                            		                <li><a href="{{ url('page/' . posttype_url($row->uri)) }}">{{ $row->post_type }}</a></li>
-                                                @else
-                                                    <li class="uk-parent">
-                                                        <a>Product<span uk-nav-parent-icon></span></a>
-                                                        <ul class=" uk-padding-remove">
-												            @foreach ($services as $service)
-                                                                <li><a href="{{url(geturl($service['uri'],$service['page_key']))}}"> {{$service->post_title}} </a></li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </li>
-                                                @endif
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                    <div class="uk-offcanvas-footer uk-padding-small uk-padding-remove-top">
-                                        <div class="uk-flex uk-flex-middle">
-                                            <div class="uk-footer-icon">
-                                                <a href="{{ $setting->facebook_link }}" class="uk-icon-button uk-margin-small-right uk-text-white" uk-icon="facebook" style="background: #342F7F!important; border-radius: 10px;"></a>
-                                                <a href="{{ $setting->instagram_link }}" class="uk-icon-button uk-margin-small-right uk-text-white" uk-icon="instagram" style="background: #BA0202!important; border-radius: 10px;"></a>
-                                                <a href="{{ $setting->twitter_link }}" class="uk-icon-button uk-margin-small-right uk-text-white" uk-icon="x" style="background: #000!important;border-radius: 10px;"></a>
-                                                <a href="{{ $setting->youtube_link }}" class="uk-icon-button uk-text-white" uk-icon="youtube" style="background: #D44139!important; border-radius: 10px;"></a>
-                                            </div>
-                                        </div>
+                                        @endforeach
+
                                     </div>
 
                                 </div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
+
                     </nav>
+                    <!-- CTA -->
+                    <div class="hidden lg:block float-animation">
+                        <a href="{{ url('page/bookappointment.html') }}"
+                            class="px-7 py-3 rounded-full
+                                btn-primary
+                                header-cta
+                                hover:scale-105
+                                transition">
+                            <i class="ri-calendar-line"></i>
+                            Book Appointment
+                        </a>
+                    </div>
+                    <!-- Mobile -->
+                    <button id="mobileMenuBtn" class="lg:hidden text-3xl">
+                        <i class="ri-menu-3-line text-white"></i>
+                    </button>
                 </div>
             </div>
         </div>
-        <!-- end mobile menu -->
+    </header>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 bg-black/50 z-[999] hidden lg:hidden">
+        <!-- Sidebar -->
+        <div id="mobileDrawer"
+            class="absolute right-0 top-0 h-full w-[300px] bg-white shadow-2xl transform translate-x-full transition-transform duration-300">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b">
+                <h4 class="heading-font text-xl text-primary" data-aos="fade-up">
+                    <a href="./" class="flex items-center gap-3">
+                        <img src="./assets/img/favicon.png" class="h-14">
+                        <div>
+                            <h3 class="heading-font text-xl text-primary">
+                                Elegance Beauty
+                            </h3>
+                            <p class="text-xs tracking-[4px] uppercase text-primary/80">
+                                Professional Salon
+                            </p>
+                        </div>
+                    </a>
+                </h4>
+                <button id="closeMenu">
+                    <i class="ri-close-line text-3xl"></i>
+                </button>
+            </div>
+            <!-- Links -->
+            <nav class="flex flex-col p-6">
+                <a href="{{ url('/') }}">Home</a>
+
+                @foreach ($navigations as $row)
+                    @if ($row->id != 2)
+                        <a href="{{ url('page/' . posttype_url($row->uri)) }}" class="py-4 border-b">
+
+                            {{ $row->post_type }}
+
+                        </a>
+                    @else
+                        <details class="border-b">
+
+                            <summary class="py-4 cursor-pointer">
+                                {{ $row->post_type }}
+                            </summary>
+
+                            @foreach ($services as $service)
+                                <a href="{{ url(geturl($service['uri'], $service['page_key'])) }}"
+                                    class="block py-3 pl-6">
+
+                                    {{ $service->post_title }}
+
+                                </a>
+                            @endforeach
+
+                        </details>
+                    @endif
+                @endforeach
+                <div class="float-animation">
+                    <a href="{{ url('page/bookappointment.html') }}"
+                        class="mt-6 text-center px-6 py-4 rounded-full btn-primary btn-luxury text-white">
+                        <i class="ri-calendar-line"></i>
+                        Book Appointment
+                    </a>
+                </div>
+            </nav>
+        </div>
     </div>
-    <!-- Header end -->
-    <!-- navbar section end-->
+    <main>

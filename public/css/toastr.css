@@ -1,0 +1,53 @@
+/* ===== Premium Toast Design ===== */
+
+.toast {
+    border-radius: 18px !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,.12) !important;
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(16px);
+    opacity: 1 !important;
+    padding: 18px 18px 18px 60px !important;
+    font-family: 'Inter', sans-serif;
+}
+
+.toast-title{
+    font-weight:600;
+}
+
+.toast-message{
+    font-size:15px;
+    line-height:1.6;
+}
+
+.toast-success{
+    background:#16a34a !important;
+}
+
+.toast-error{
+    background:#dc2626 !important;
+}
+
+.toast-warning{
+    background:#f59e0b !important;
+}
+
+.toast-info{
+    background:var(--primary) !important;
+}
+
+.toast-progress{
+    background:rgba(255,255,255,.4) !important;
+}
+
+.toast-close-button{
+    color:#fff !important;
+    opacity:.8;
+}
+
+.toast-close-button:hover{
+    opacity:1;
+}
+
+#toast-container>div{
+    border-radius:18px !important;
+}

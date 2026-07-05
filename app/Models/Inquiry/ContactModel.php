@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class ContactModel extends Model
 {
     use HasFactory;
-    protected $table = 'cl_inquiry';
-    protected $fillable=['full_name','email','number','subject','message','country'];
+    protected $table = 'cl_appointments';
+    protected $fillable = [
+        'full_name',
+        'email',
+        'phone',
+        'service',
+        'appointment_date',
+        'appointment_time',
+        'subject',
+        'message',
+        'country',
+        'status',
+    ];
+
 }

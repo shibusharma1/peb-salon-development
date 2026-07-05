@@ -15,6 +15,7 @@
 							<tr class="bg-light">
 								<th class="">SN</th>
 								<th class="">Post Category</th>                            
+								<th class="">Post Type</th>                            
 								<th class="text-left">Action</th>
 							</tr>
 						</thead>
@@ -24,6 +25,7 @@
 							<tr class="id{{$row->id}}">
 								<td class="">{{$loop->iteration}}</td>
 								<td class="">{{ ucfirst($row->category) }}</td>
+								<td class="">{{ $row->postType->post_type ?? '' }}</td>
 								<td class="text-left">  
 								<a href="{{ route('postcategory.edit',$row->id) }}">Edit</a>
 								@if(!is_empty_category($row->id))

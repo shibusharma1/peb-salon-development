@@ -34,7 +34,7 @@ Route::get('page/photogallery/{category_id}', 'FrontendControllers\FrontpageCont
 
 // Send Mail
 Route::post('page/contact/sendmail', 'FrontendControllers\FrontpageController@sendmail')->name('sendmail');
-Route::post('page/contact/contact-sendmail', 'FrontendControllers\FrontpageController@sendmail_contact')->name('sendmail_contact');
+Route::post('page/contact/contact-sendmail_appointment', 'FrontendControllers\FrontpageController@sendmail_contact')->name('sendmail_appointment');
 Route::post('page/career/resume-sendmail', 'FrontendControllers\FrontpageController@sendmail_resume')->name('sendmail_resume');
 Route::post('page/order/sendorder', 'FrontendControllers\FrontpageController@sendorder')->name('sendorder');
 Route::post('page/career/sendresume', 'FrontendControllers\FrontpageController@sendresume')->name('sendresume');

@@ -51,9 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="uk-width-1-3@m block">
-                @include('themes/default/common/blog-sidebar')
-            </div>
+    
         </div>
     </div>
 </section>

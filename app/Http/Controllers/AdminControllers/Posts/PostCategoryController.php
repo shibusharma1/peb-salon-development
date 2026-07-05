@@ -19,7 +19,7 @@ class PostCategoryController extends Controller
      */
     public function index()
     {
-        $data = PostCategoryModel::orderBy('id','desc')->get();
+        $data = PostCategoryModel::with('postType')->orderBy('id','desc')->get();
         return view('admin.post-category.index', compact('data'));
     }
 
