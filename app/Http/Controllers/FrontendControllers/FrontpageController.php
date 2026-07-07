@@ -71,6 +71,7 @@ class FrontpageController extends Controller
     // dd($posts);
     $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
 
+    $posts = collect();
     $categories = collect();
     $galleries = collect();
     $pricingItems = collect();
