@@ -1,48 +1,48 @@
-@if ($paginator->hasPages())
-    <nav aria-label="Pagination">
-        <ul class="uk-pagination uk-flex-center uk-margin-top" uk-margin>
-            
-            {{-- Previous Page Link --}}
-            @if ($paginator->onFirstPage())
-                <li class="uk-disabled"><span uk-pagination-previous></span></li>
+@if ($posts->hasPages())
+    <div class="flex justify-center mt-16">
+        <div class="flex flex-wrap items-center gap-3">
+
+            {{-- Previous --}}
+            @if ($posts->onFirstPage())
+                <span
+                    class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center opacity-40 cursor-not-allowed">
+                    <i class="ri-arrow-left-s-line"></i>
+                </span>
             @else
-                <li>
-                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="uk-prev-page">
-                        <span uk-pagination-previous></span>
-                    </a>
-                </li>
+                <a href="{{ $posts->previousPageUrl() }}"
+                    class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition">
+                    <i class="ri-arrow-left-s-line"></i>
+                </a>
             @endif
 
-            {{-- Pagination Elements --}}
-            @foreach ($elements as $element)
-                {{-- "Three Dots" Separator --}}
-                @if (is_string($element))
-                    <li class="uk-disabled"><span>{{ $element }}</span></li>
-                @endif
-
-                {{-- Array of Links --}}
-                @if (is_array($element))
-                    @foreach ($element as $page => $url)
-                        @if ($page == $paginator->currentPage())
-                            <li class="uk-active"><span aria-current="page">{{ $page }}</span></li>
-                        @else
-                            <li><a href="{{ $url }}">{{ $page }}</a></li>
-                        @endif
-                    @endforeach
+            {{-- Page Numbers --}}
+            @foreach ($posts->getUrlRange(1, $posts->lastPage()) as $page => $url)
+                @if ($page == $posts->currentPage())
+                    <span
+                        class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-semibold shadow-lg">
+                        {{ $page }}
+                    </span>
+                @else
+                    <a href="{{ $url }}"
+                        class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition">
+                        {{ $page }}
+                    </a>
                 @endif
             @endforeach
 
-            {{-- Next Page Link --}}
-            @if ($paginator->hasMorePages())
-                <li>
-                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="uk-next-page">
-                        <span uk-pagination-next></span>
-                    </a>
-                </li>
+            {{-- Next --}}
+            @if ($posts->hasMorePages())
+                <a href="{{ $posts->nextPageUrl() }}"
+                    class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition">
+                    <i class="ri-arrow-right-s-line"></i>
+                </a>
             @else
-                <li class="uk-disabled"><span uk-pagination-next></span></li>
+                <span
+                    class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center opacity-40 cursor-not-allowed">
+                    <i class="ri-arrow-right-s-line"></i>
+                </span>
             @endif
 
-        </ul>
-    </nav>
+        </div>
+    </div>
 @endif

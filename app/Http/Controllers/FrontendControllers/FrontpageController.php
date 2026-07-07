@@ -35,7 +35,9 @@ class FrontpageController extends Controller
   public function index()
   {
     $banners = BannerModel::first();
-    $about = PostTypeModel::where('id', '1')->first();
+    $about = PostModel::where('post_type', 1)->with('associatePosts')->orderBy('post_order', 'asc')->first();
+    $services = PostModel::where('post_type', 11)->orderBy('post_order')->paginate(3);
+    $offers = PostModel::where('post_type', 13)->orderBy('post_order')->paginate(3);
     $missions = PostTypeModel::where('id', '9')->first();
     $mission = PostModel::where(['id' => '22', 'post_type' => 9])->first();
     $vision = PostModel::where(['id' => '23', 'post_type' => 9])->first();
@@ -44,18 +46,18 @@ class FrontpageController extends Controller
     $blogs = PostModel::where('post_type', '3')->orderBy('post_order', 'asc')->take(5)->get();
     $frontpageData = PostTypeModel::where('id', '10')->first();
 
-    return view('themes.default.frontpage', compact('banners', 'about', 'missions', 'mission', 'vision', 'goal', 'blog', 'blogs', 'frontpageData'));
+    return view('themes.default.frontpage', compact('banners', 'about', 'services', 'offers', 'missions', 'mission', 'vision', 'goal', 'blog', 'blogs', 'frontpageData'));
   }
 
   public function posttype($uri)
   {
-   
+
     if (!check_posttype_uri($uri)) {
       abort(404);
     }
     $setting = SettingModel::where('id', 1)->first();
     $data = PostTypeModel::where('uri', $uri)->first();
-  
+
     $tmpl['template'] = 'page';
     if ($tmpl['template']) {
       $data['template'] = $data['template'];
@@ -64,12 +66,13 @@ class FrontpageController extends Controller
     if ($data) {
       $posts = PostModel::where('post_type', $data->id)->with('associatePosts')->orderBy('post_order', 'asc')->paginate(6);
     }
-
-
+    // dd($posts);
     $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
 
     $categories = collect();
     $galleries = collect();
+    $pricingItems = collect();
+    $founder = collect();
 
     if ($data->uri === 'photogallery') {
       $categories = ImageGalleryCategoryModel::whereHas('galleries')->orderBy('created_at')->get();
@@ -78,17 +81,30 @@ class FrontpageController extends Controller
         ->orderBy('created_at', 'DESC')
         ->get();
     }
+    $services = PostModel::where('post_type', 11)->orderBy('post_order')->get();
 
-    return view('themes.default.' . $data['template'] . '', compact('data', 'documents', 'posts', 'setting', 'categories', 'galleries'));
+    if ($data->uri === 'pricing') {
+      $categories = PostCategoryModel::where('post_type', 11)
+        ->orderBy('ordering')
+        ->get();
+
+      $pricingItems = PostModel::where('post_type', 14)
+        ->orderBy('post_order')
+        ->get();
+    }
+    $founder = $posts->first();
+
+    return view('themes.default.' . $data['template'] . '', compact('data', 'documents', 'founder', 'posts', 'setting', 'categories', 'pricingItems', 'galleries', 'services'));
   }
 
   public function pagedetail($uri)
   {
-  
+
     if (!check_uri($uri)) {
       abort(404);
     }
     $data = PostModel::where('uri', $uri)->orWhere('page_key', $uri)->first();
+
     $tmpl['template'] = 'single';
     if ($tmpl['template']) {
       $data['template'] = $data['template'];

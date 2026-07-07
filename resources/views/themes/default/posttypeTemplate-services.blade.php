@@ -15,14 +15,13 @@
                         class="group bg-white rounded-[32px] overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
 
                         <div class="overflow-hidden">
-                            <img src="{{ asset('uploads/original/' . $post->page_thumbnail) }}"
-                                alt="{{ $post->post_title }}"
-                                class="w-full h-64 md:h-72 lg:h-80 object-cover group-hover:scale-110 transition duration-700">
+                            <img src="{{ asset('uploads/original/' . $post->page_thumbnail) }}" alt="{{ $post->post_title }}"
+                                class="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover group-hover:scale-110 transition duration-700">
                         </div>
 
-                        <div class="p-6 lg:p-8">
+                        <div class="p-5 md:p-6 lg:p-8">
                             <span class="text-primary text-xs md:text-sm uppercase tracking-[3px]">
-                                Beauty Care
+                                {{ $post->category->category ?? 'Beauty Treatment' }}
                             </span>
 
                             <h4 class="mt-3 text-xl lg:text-2xl font-semibold text-gray-900">
@@ -43,14 +42,8 @@
                     </div>
                 @endforeach
             </div>
-            <!-- CTA -->
-            <div class="text-center mt-16">
-                <a href="#"
-                    class="inline-flex items-center gap-3 px-8 py-4 rounded-full btn-primary btn-luxury text-white font-semibold shadow-lg hover:scale-105 transition">
-                    View All Services
-                    <i class="ri-arrow-right-line"></i>
-                </a>
-            </div>
+
+            @include('themes.default.common.pagination')
         </div>
     </section>
     <!--/ End Services -->

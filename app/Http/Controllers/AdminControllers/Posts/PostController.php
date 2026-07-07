@@ -19,10 +19,23 @@ class PostController extends Controller
    */
   public function index($uri)
   {
+
     $posttype = PostTypeModel::where('uri', $uri)->first();
     if ($posttype) {
       $posttypeId = $posttype->id;
-      $data = PostModel::where(['post_type' => $posttypeId, 'post_parent' => 0])->orderBy('post_order', 'asc')->get();
+      if ($uri == 'pricing') {
+
+        $data = PostModel::where('post_type', $posttypeId)
+          ->where('post_parent', '!=', 0)
+          ->orderBy('post_order', 'asc')
+          ->get();
+      } else {
+
+        $data = PostModel::where([
+          'post_type' => $posttypeId,
+          'post_parent' => 0
+        ])->orderBy('post_order', 'asc')->get();
+      }
       return view('admin.posts.index', compact('data'));
     }
     return redirect('/dashboard');
@@ -88,8 +101,20 @@ class PostController extends Controller
     // Get parent list by post type ID  
     $posttype_uri = request()->segment(2);
     $posttype = $this->getPostTypeId($posttype_uri);
+
     $posttype_id = $posttype->id;
-    $parent_post = PostModel::where(['post_type' => $posttype_id, 'post_parent' => 0])->get();
+    if ($posttype->id == 14) {
+
+      $parent_post = PostModel::where('post_type', 11)
+        ->where('post_parent', 0)
+        ->orderBy('post_title')
+        ->get();
+    } else {
+      $parent_post = PostModel::where('post_type', $posttype_id)
+        ->where('post_parent', 0)
+        ->get();
+    }
+    // $parent_post = PostModel::where(['post_type' => $posttype_id, 'post_parent' => 0])->get();
     $ord = PostModel::max('post_order');
     $post_order = $ord + 1;
     $category = PostCategoryModel::where('post_type', $posttype_id)->get();
@@ -259,6 +284,7 @@ class PostController extends Controller
     $data['page_thumbnail'] = $page_thumbnail_name;
     $data['icon'] = $icon_name;
     $data['post_parent'] = $request->post_parent ?? 0;
+    $data['price'] = $request->price;
     $data['banner'] = $banner_name;
     $isChecked = $request->has('show_in_home');
     $data['show_in_home'] = ($isChecked) ? '1' : '0';

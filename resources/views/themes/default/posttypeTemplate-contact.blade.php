@@ -4,7 +4,7 @@
 @section('content')
     @include('themes.default.common.hero-banner')
 
-    <section class="section-white">
+    <section class="section-white overflow-x-hidden">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid lg:grid-cols-12 gap-8 items-stretch">
                 <!-- Map -->
@@ -79,50 +79,38 @@
                                 Follow Us
                             </h5>
                             <div class="flex gap-3">
-
                                 @if ($setting->facebook_link)
                                     <a href="{{ $setting->facebook_link }}" target="_blank" class="social-circle">
-
                                         <i class="ri-facebook-fill"></i>
-
                                     </a>
                                 @endif
 
                                 @if ($setting->instagram_link)
                                     <a href="{{ $setting->instagram_link }}" target="_blank" class="social-circle">
-
                                         <i class="ri-instagram-line"></i>
-
                                     </a>
                                 @endif
 
                                 @if ($setting->twitter_link)
                                     <a href="{{ $setting->twitter_link }}" target="_blank" class="social-circle">
-
                                         <i class="ri-twitter-x-line"></i>
-
                                     </a>
                                 @endif
 
                                 @if ($setting->youtube_link)
                                     <a href="{{ $setting->youtube_link }}" target="_blank" class="social-circle">
-
                                         <i class="ri-youtube-fill"></i>
-
                                     </a>
                                 @endif
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-light">
+    <section class="section-light overflow-x-hidden">
         <div class="max-w-7xl mx-auto px-4">
             <div class="bg-white rounded-[40px] shadow-xl overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
                 <div class="grid lg:grid-cols-2">
@@ -188,7 +176,7 @@
             </div>
         </div>
     </section>
-
+{{-- 
 
     <script src="https://www.google.com/recaptcha/api.js?render={{ env('SITE_KEY') }}"></script>
     <script>
@@ -207,5 +195,5 @@
             // Refresh the reCAPTCHA token every 100 seconds (less than 2 minutes)
             setInterval(executeRecaptcha, 900000);
         });
-    </script>
+    </script> --}}
 @endsection

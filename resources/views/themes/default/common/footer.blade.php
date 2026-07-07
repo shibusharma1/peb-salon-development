@@ -145,6 +145,15 @@
         </div>
     </div>
 </footer> -->
+
+{{-- Back to top --}}
+<button id="backToTop" class="back-to-top">
+    <span class="arrow-wrap">
+        <i class="ri-arrow-up-double-line"></i>
+    </span>
+</button>
+
+
 <footer class="footer-luxury text-white">
     <!-- Decorative top glow -->
     <div class="absolute top-0 left-0 w-full h-[1px] bg-white/20"></div>
@@ -280,7 +289,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
 
                 <p class="text-sm text-white/70">
-                    © {{ date('Y') }}  {{ $setting->copyright_text }}
+                    © {{ date('Y') }} {{ $setting->copyright_text }}
                 </p>
 
                 <p class="text-sm text-white/70">
@@ -294,23 +303,16 @@
     </div>
 </footer>
 
-{{-- Back to top --}}
-<button id="backToTop" class="back-to-top">
-    <span class="arrow-wrap">
-        <i class="ri-arrow-up-double-line"></i>
-    </span>
-</button>
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="{{ asset('js/mobilemenu.js') }}"></script>
-<script src="{{ asset('js/backtotop.js') }}"></script>
 <script src="{{ asset('js/herotext-typewriter.js') }}"></script>
 <script src="{{ asset('js/pricing.js') }}"></script>
 <script src="{{ asset('js/gallery.js') }}"></script>
 <script src="{{ asset('js/swiper.js') }}"></script>
 <script src="{{ asset('js/terms-and-conditions.js') }}"></script>
-<script src="{{ asset('js/') }}"></script>
+<script src="{{ asset('js/backtotop.js') }}"></script>
+
 
 <script>
     AOS.init({

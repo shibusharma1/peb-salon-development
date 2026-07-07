@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <!-- Remix Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-  
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pricing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
@@ -49,7 +49,7 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-10">
                 <div class="flex items-center justify-between h-24">
                     <!-- Logo -->
-                    <a href="./" class="flex items-center gap-3">
+                    <a href="{{ url('/') }}" class="flex items-center gap-3">
                         <img src="{{ asset('assets/img/logo-white-2.png') }}" class="h-14"
                             alt="{{ $setting->site_name }}">
                         <!-- <div>
@@ -93,11 +93,16 @@
 
                         @foreach ($navigations as $row)
                             @if ($row->id != 2)
-                                <a href="{{ url('page/' . posttype_url($row->uri)) }}" class="nav-link">
+                                @php
+                                    $pageUrl = 'page/' . posttype_url($row->uri);
+                                @endphp
+
+                                <a href="{{ url($pageUrl) }}"
+                                    class="nav-link {{ request()->is($pageUrl) ? 'active' : '' }}">
                                     {{ $row->post_type }}
                                 </a>
                             @else
-                                <div class="relative group">
+                                {{-- <div class="relative group">
 
                                     <button class="nav-link flex items-center gap-2">
                                         {{ $row->post_type }}
@@ -106,7 +111,6 @@
 
                                     <div
                                         class="absolute left-0 top-full mt-2 w-60 bg-white rounded-xl shadow-xl hidden group-hover:block">
-
                                         @foreach ($services as $service)
                                             <a href="{{ url(geturl($service['uri'], $service['page_key'])) }}"
                                                 class="block px-5 py-3 hover:bg-gray-100">
@@ -115,10 +119,8 @@
 
                                             </a>
                                         @endforeach
-
                                     </div>
-
-                                </div>
+                                </div> --}}
                             @endif
                         @endforeach
 
@@ -151,8 +153,8 @@
             <!-- Header -->
             <div class="flex items-center justify-between p-6 border-b">
                 <h4 class="heading-font text-xl text-primary" data-aos="fade-up">
-                    <a href="./" class="flex items-center gap-3">
-                        <img src="./assets/img/favicon.png" class="h-14">
+                    <a href="{{ url('/') }}" class="flex items-center gap-3">
+                        <img src="{{ asset('assets/favicon/favicon.png') }}" class="h-14">
                         <div>
                             <h3 class="heading-font text-xl text-primary">
                                 Elegance Beauty
@@ -169,17 +171,22 @@
             </div>
             <!-- Links -->
             <nav class="flex flex-col p-6">
-                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ url('/') }}" class="mobile-nav-link {{ request()->is('/') ? 'active' : '' }}">
+                    Home
+                </a>
 
                 @foreach ($navigations as $row)
                     @if ($row->id != 2)
-                        <a href="{{ url('page/' . posttype_url($row->uri)) }}" class="py-4 border-b">
+                        @php
+                            $pageUrl = 'page/' . posttype_url($row->uri);
+                        @endphp
 
+                        <a href="{{ url($pageUrl) }}"
+                            class="mobile-nav-link {{ request()->is($pageUrl) ? 'active' : '' }}">
                             {{ $row->post_type }}
-
                         </a>
                     @else
-                        <details class="border-b">
+                        {{-- <details class="border-b">
 
                             <summary class="py-4 cursor-pointer">
                                 {{ $row->post_type }}
@@ -194,7 +201,7 @@
                                 </a>
                             @endforeach
 
-                        </details>
+                        </details> --}}
                     @endif
                 @endforeach
                 <div class="float-animation">

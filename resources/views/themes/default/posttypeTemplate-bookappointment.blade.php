@@ -66,15 +66,10 @@
                                         Select Service
                                     </label>
                                     <select name="service" class="booking-input" required>
-                                        <option>Select Service</option>
-                                        <option>Threading</option>
-                                        <option>Waxing</option>
-                                        <option>Facial</option>
-                                        <option>Nails</option>
-                                        <option>Massage</option>
+                                        <option selected>Select Service</option>
                                         @foreach ($services as $service)
-                                            <option value="{{ $service->title ?? '' }}">
-                                                {{ $service->title ?? '' }}
+                                            <option value="{{ $service->post_title ?? '' }}">
+                                                {{ $service->post_title ?? '' }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -90,8 +85,8 @@
                                     <label class="booking-label">
                                         Preferred Time
                                     </label>
-                                    <input type="time" id="appointment_time" name="appointment_time"
-                                        class="booking-input">
+                                    <select id="appointment_time" name="appointment_time" class="booking-input" required>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mt-6" data-aos="fade-up" data-aos-delay="200">
@@ -249,22 +244,117 @@
         }, 5000);
     </script>
     <script>
+        const dateInput = document.getElementById('appointment_date');
+
+        function formatDate(date) {
+            return date.toISOString().split('T')[0];
+        }
+
+        function getNextWorkingDate(date) {
+            let d = new Date(date);
+
+            do {
+                d.setDate(d.getDate() + 1);
+            } while (d.getDay() === 0); // Skip Sunday
+
+            return d;
+        }
+
+        function initializeDate() {
+
+            let today = new Date();
+
+            // If today is Sunday, default to Monday
+            if (today.getDay() === 0) {
+                today = getNextWorkingDate(today);
+            }
+
+            // Don't allow dates before today
+            dateInput.min = formatDate(new Date());
+
+            // Set default selected date
+            dateInput.value = formatDate(today);
+        }
+
+        dateInput.addEventListener('change', function() {
+
+            let selected = new Date(this.value);
+
+            // Don't allow Sunday
+            if (selected.getDay() === 0) {
+
+                alert("Appointments are not available on Sundays.");
+
+                selected = getNextWorkingDate(selected);
+
+                this.value = formatDate(selected);
+            }
+
+            // Refresh available times
+            populateTimes();
+        });
+
+        initializeDate();
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             const dateInput = document.getElementById('appointment_date');
-            const timeInput = document.getElementById('appointment_time');
-            function updateMinTime() {
-                const today = new Date().toISOString().split('T')[0];
-                if (dateInput.value === today) {
-                    const now = new Date();
-                    let hours = String(now.getHours()).padStart(2, '0');
-                    let minutes = String(now.getMinutes()).padStart(2, '0');
-                    timeInput.min = `${hours}:${minutes}`;
-                } else {
-                    timeInput.removeAttribute('min');
+            const timeSelect = document.getElementById('appointment_time');
+
+            function formatDate(date) {
+                return date.toISOString().split('T')[0];
+            }
+
+            function populateTimes() {
+
+                timeSelect.innerHTML = '';
+
+                const selectedDate = dateInput.value;
+                const today = formatDate(new Date());
+
+                const now = new Date();
+
+                for (let hour = 9; hour <= 18; hour++) {
+
+                    for (let minute = 0; minute < 60; minute += 30) {
+
+                        if (hour === 18 && minute > 0) {
+                            continue;
+                        }
+
+                        const hh = String(hour).padStart(2, '0');
+                        const mm = String(minute).padStart(2, '0');
+
+                        // Skip past time if today
+                        if (selectedDate === today) {
+
+                            if (
+                                hour < now.getHours() ||
+                                (hour === now.getHours() && minute < now.getMinutes())
+                            ) {
+                                continue;
+                            }
+                        }
+
+                        const option = document.createElement('option');
+
+                        option.value = `${hh}:${mm}`;
+
+                        const displayHour = hour > 12 ? hour - 12 : hour;
+                        const ampm = hour >= 12 ? 'PM' : 'AM';
+
+                        option.text = `${displayHour}:${mm} ${ampm}`;
+
+                        timeSelect.appendChild(option);
+                    }
                 }
             }
-            dateInput.addEventListener('change', updateMinTime);
-            updateMinTime();
+
+            dateInput.addEventListener('change', populateTimes);
+
+            populateTimes();
+
         });
     </script>
 @endsection
