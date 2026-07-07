@@ -423,7 +423,7 @@ section {
 
 /* Footer CSS */
 .footer-luxury {
-    background:
+    /* background:
         radial-gradient(
             circle at top right,
             rgba(255, 255, 255, 0.14),
@@ -434,7 +434,8 @@ section {
             rgba(255, 255, 255, 0.08),
             transparent 25%
         ),
-        linear-gradient(135deg, #8f1f59 0%, #ae2b6d 45%, #c44183 100%);
+        linear-gradient(135deg, #8f1f59 0%, #ae2b6d 45%, #c44183 100%); */
+    background: #AE2B6D;
     position: relative;
     overflow: hidden;
 }

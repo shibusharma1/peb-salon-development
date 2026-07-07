@@ -24,7 +24,10 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <!-- Remix Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-
+    {{-- select 2 cdn and css --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+ 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pricing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
@@ -39,6 +42,106 @@
 
         .heading-font {
             font-family: 'Playfair Display', serif;
+        }
+
+        /* Select2 Wrapper */
+        .select2-container {
+            width: 100% !important;
+        }
+
+        /* Selected Box */
+        .select2-container--default .select2-selection--single {
+            height: 56px;
+            border: 1px solid #f0d7e6;
+            border-radius: 16px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            transition: all .3s ease;
+            box-shadow: 0 2px 10px rgba(177, 50, 122, 0.05);
+        }
+
+        /* Hover */
+        .select2-container--default .select2-selection--single:hover {
+            border-color: var(--primary-light);
+        }
+
+        /* Focus */
+        .select2-container--default.select2-container--open .select2-selection--single {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(177, 50, 122, .12);
+        }
+
+        /* Selected Text */
+        .select2-container--default .select2-selection__rendered {
+            line-height: 54px !important;
+            color: #374151;
+            font-size: 15px;
+            font-weight: 500;
+            padding-left: 0 !important;
+        }
+
+        /* Placeholder */
+        .select2-container--default .select2-selection__placeholder {
+            color: #9ca3af;
+        }
+
+        /* Dropdown Arrow */
+        .select2-container--default .select2-selection__arrow {
+            height: 54px;
+            right: 14px;
+        }
+
+        .select2-container--default .select2-selection__arrow b {
+            border-color: var(--primary) transparent transparent transparent;
+        }
+
+        /* Dropdown */
+        .select2-dropdown {
+            border: 1px solid #f0d7e6;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(177, 50, 122, .12);
+        }
+
+        /* Search Box */
+        .select2-search--dropdown {
+            padding: 12px;
+            background: #fcf2f8;
+        }
+
+        .select2-search__field {
+            border: 1px solid #f0d7e6 !important;
+            border-radius: 12px !important;
+            padding: 10px 14px !important;
+            outline: none !important;
+        }
+
+        .select2-search__field:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(177, 50, 122, .1);
+        }
+
+        /* Options */
+        .select2-results__option {
+            padding: 12px 16px;
+            font-size: 14px;
+        }
+
+        /* Hover Option */
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    var(--primary-light)) !important;
+            color: #fff;
+        }
+
+        /* Selected Option */
+        .select2-container--default .select2-results__option[aria-selected=true] {
+            background: #fcf2f8;
+            color: var(--primary-dark);
+            font-weight: 600;
         }
     </style>
 </head>

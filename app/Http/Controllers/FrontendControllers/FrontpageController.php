@@ -7,6 +7,7 @@ use App\Models\Inquiry\CareerModel;
 use App\Models\Inquiry\ContactModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\AdminAppointmentMail;
 use App\Models\Banners\BannerModel;
 use App\Models\MultipleBanners\MultipleBannerModel;
 use App\Models\Posts\PostModel;
@@ -26,6 +27,7 @@ use App\Mail\SendResume;
 use App\Mail\CareerApply;
 use App\Mail\CareerMail;
 use App\Models\Posts\PostTypeModel;
+use App\User;
 use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -81,7 +83,9 @@ class FrontpageController extends Controller
         ->orderBy('created_at', 'DESC')
         ->get();
     }
+
     $services = PostModel::where('post_type', 11)->orderBy('post_order')->get();
+    $offers = PostModel::where('post_type', 13)->orderBy('post_order')->get();
 
     if ($data->uri === 'pricing') {
       $categories = PostCategoryModel::where('post_type', 11)
@@ -92,9 +96,10 @@ class FrontpageController extends Controller
         ->orderBy('post_order')
         ->get();
     }
+
     $founder = $posts->first();
 
-    return view('themes.default.' . $data['template'] . '', compact('data', 'documents', 'founder', 'posts', 'setting', 'categories', 'pricingItems', 'galleries', 'services'));
+    return view('themes.default.' . $data['template'] . '', compact('data', 'offers' ,'documents', 'founder', 'posts', 'setting', 'categories', 'pricingItems', 'galleries', 'services'));
   }
 
   public function pagedetail($uri)
@@ -294,7 +299,7 @@ class FrontpageController extends Controller
       }
 
       if ($request->isMethod('post')) {
-        ContactModel::create([
+        $contact = ContactModel::create([
           'full_name'        => $request->name,
           'email'            => $request->email,
           'phone'            => $request->phone,
@@ -304,9 +309,18 @@ class FrontpageController extends Controller
           'message'          => $request->message,
           'status'           => 'Pending',
         ]);
+
         // return new ContactMail();
-        // Mail::to($request->email)->send(new ContactMail());
+        Mail::to($contact->email)->queue(new ContactMail($contact));
         $name = $request->name;
+
+        $admins = User::pluck('email');
+
+        foreach ($admins as $email) {
+          Mail::to($email)
+            ->queue(new AdminAppointmentMail($contact));
+        }
+
         $message = "<p>Thank you for contacting us. One of our team will be in touch with you soon.</p>";
         return view('themes.default.inquiry-success', compact('message', 'name'));
       }

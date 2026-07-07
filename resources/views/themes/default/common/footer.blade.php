@@ -303,6 +303,7 @@
     </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="{{ asset('js/mobilemenu.js') }}"></script>
@@ -310,15 +311,35 @@
 <script src="{{ asset('js/pricing.js') }}"></script>
 <script src="{{ asset('js/gallery.js') }}"></script>
 <script src="{{ asset('js/swiper.js') }}"></script>
-<script src="{{ asset('js/terms-and-conditions.js') }}"></script>
 <script src="{{ asset('js/backtotop.js') }}"></script>
-
 
 <script>
     AOS.init({
         duration: 1000,
         once: true,
         offset: 120
+    });
+</script>
+<script>
+    $(document).ready(function() {
+
+        console.log('Before init:', typeof $.fn.select2);
+        console.log('Element found:', $('#bookingService').length);
+
+        $('#bookingService').select2({
+            placeholder: "Select Service or Offer",
+            allowClear: true
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const service = params.get('service');
+
+        if (service) {
+            $('#bookingService')
+                .val(service)
+                .trigger('change');
+        }
+
     });
 </script>
 

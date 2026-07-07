@@ -288,7 +288,7 @@
                                             £20
                                         </h3>
                                     </div> --}}
-                                    <a href="bookappointment.php" class="btn-primary btn-luxury w-full justify-center mt-8">
+                                    <a href="{{ url('page/bookappointment.html?service=' . urlencode($data->post_title . '|offer')) }}" class="btn-primary btn-luxury w-full justify-center mt-8">
                                         Book Offer
                                         <i class="ri-arrow-right-line"></i>
                                     </a>

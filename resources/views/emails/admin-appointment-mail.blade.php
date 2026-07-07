@@ -252,17 +252,17 @@
                         <td style="padding:40px 35px 20px;">
 
                             <h2 style="color:#6d1b47;margin-bottom:20px;">
-                                Thank You For Your Appointment Request 💖
+                                🔔 New Appointment Booking Received
                             </h2>
 
                             <p style="font-size:16px;color:#555;line-height:1.8;">
-                                Dear <strong>{{ $contact->full_name }}</strong>,
+                                Hello Admin,
                             </p>
 
                             <p style="font-size:16px;color:#555;line-height:1.8;">
-                                Thank you for choosing Professional Elegance Beauty.
-                                We have successfully received your appointment request.
-                                One of our beauty specialists will contact you shortly to confirm your booking.
+                                A new appointment booking has been submitted through the Professional Elegance Beauty
+                                website.
+                                Please review the details below and contact the customer if necessary.
                             </p>
 
                         </td>
@@ -278,7 +278,7 @@
                                     <td>
 
                                         <h3 style="margin-top:0;margin-bottom:20px;color:#b1327a;font-size:18px;">
-                                            Appointment Details
+                                            Customer Booking Details
                                         </h3>
 
                                         <p style="margin:10px 0;color:#444;">
@@ -299,6 +299,11 @@
                                         <p style="margin:10px 0;color:#444;">
                                             <strong>Service:</strong>
                                             {{ $contact->service }}
+                                        </p>
+
+                                        <p style="margin:10px 0;color:#444;">
+                                            <strong>Message:</strong>
+                                            {{ $contact->message ?: 'N/A' }}
                                         </p>
 
                                         <p style="margin:10px 0;color:#444;">
@@ -323,11 +328,11 @@
                         <td style="padding:30px 35px;">
 
                             <p style="font-size:16px;color:#555;line-height:1.8;">
-                                Our team will review your request and get back to you as soon as possible.
+                                Please log in to the admin panel to review and manage this appointment request.
                             </p>
 
                             <p style="font-size:16px;color:#555;line-height:1.8;">
-                                We look forward to welcoming you and helping you look and feel your absolute best.
+                                Ensure the customer is contacted promptly for confirmation and scheduling.
                             </p>
 
                         </td>
@@ -337,11 +342,10 @@
                     <tr>
                         <td align="center" style="padding:10px 35px 40px;">
 
-                            <a href="{{ url('/') }}"
+                            <a href="{{ url('/inquiry/contact_us') }}"
                                 style="display:inline-block;padding:16px 34px;background:linear-gradient(135deg,#b1327a,#d867a2);color:#fff;text-decoration:none;border-radius:999px;font-weight:600;font-size:15px;">
-                                Visit Our Website
+                                View Appointment
                             </a>
-
                         </td>
                     </tr>
 
@@ -354,7 +358,7 @@
                             </p>
 
                             <p style="margin-top:8px;color:#999;font-size:13px;">
-                                Thank you for trusting us with your beauty journey.
+                                This is an automated notification from the Professional Elegance Beauty booking system.
                             </p>
 
                         </td>

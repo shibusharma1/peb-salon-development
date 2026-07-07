@@ -106,7 +106,7 @@
                         </div>
                         <!-- Add button here -->
                         <div class="mt-6 text-center">
-                            <a href="bookappointment.php" class="btn-primary btn-luxury inline-flex items-center gap-2">
+                            <a href="{{ url('page/bookappointment.html?service=' . urlencode($data->post_title . '|service')) }}" class="btn-primary btn-luxury inline-flex items-center gap-2">
                                 <i class="ri-calendar-line"></i>
                                 Book Appointment Now
                             </a>

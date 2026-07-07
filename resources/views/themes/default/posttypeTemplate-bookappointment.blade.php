@@ -65,11 +65,18 @@
                                     <label class="booking-label">
                                         Select Service
                                     </label>
-                                    <select name="service" class="booking-input" required>
-                                        <option selected>Select Service</option>
+                                    <select id="bookingService" name="service" class="booking-input" required>
+                                        <option value=""></option>
+
+                                        @foreach ($offers as $offer)
+                                            <option value="{{ $offer->post_title }}|offer">
+                                                {{ $offer->post_title }} - Offer
+                                            </option>
+                                        @endforeach
+
                                         @foreach ($services as $service)
-                                            <option value="{{ $service->post_title ?? '' }}">
-                                                {{ $service->post_title ?? '' }}
+                                            <option value="{{ $service->post_title }}|service">
+                                                {{ $service->post_title }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -97,18 +104,19 @@
                                     placeholder="Tell us anything we should know..."></textarea>
                             </div>
                             <!-- Terms & Conditions Checkbox -->
-                            <div class="mt-6 flex items-start gap-3" data-aos="fade-up" data-aos-delay="250">
+                            <div class="mt-6 flex items-start gap-3" data-aos="fade-up" data-aos-delay="100">
                                 <input id="terms" type="checkbox" required
                                     class="mt-1 h-5 w-5 accent-[var(--primary)] cursor-pointer">
 
                                 <label for="terms" class="text-sm text-light leading-6 cursor-pointer">
                                     I accept the
-                                    <a href="./terms-and-conditions.php" class="text-primary font-medium hover:underline">
+                                    <a href="{{ url('page/terms-and-conditions.html') }}"
+                                        class="text-primary font-medium hover:underline">
                                         Terms & Conditions
                                     </a>
                                 </label>
                             </div>
-                            <button class="btn-primary btn-luxury mt-6" data-aos="zoom-in" data-aos-delay="300">
+                            <button class="btn-primary btn-luxury mt-6" data-aos="zoom-in" data-aos-delay="100">
                                 <i class="ri-calendar-check-line"></i>
                                 Book Appointment
                             </button>

@@ -184,7 +184,8 @@ return [
         App\Providers\SidebarInnerComposerProvider::class, 
         App\Providers\SidebarBlogComposerProvider::class, 
         App\Providers\FrontpageComposerProvider::class, 
-        App\Providers\SidebarResourceLibraryComposerProvider::class, 
+        App\Providers\SidebarResourceLibraryComposerProvider::class,
+         Resend\Laravel\ResendServiceProvider::class, 
 
     ],
 

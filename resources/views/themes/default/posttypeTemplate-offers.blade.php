@@ -49,7 +49,7 @@
 
                                             <div class="mt-auto pt-10 flex flex-wrap gap-4">
 
-                                                <a href="{{ url('bookappointment') }}"
+                                                <a href="{{ url('page/bookappointment.html?service=' . urlencode($offer->post_title . '|offer')) }}"
                                                     class="inline-flex items-center gap-2 px-8 py-4 rounded-full btn-primary btn-luxury text-white font-semibold">
                                                     Book Now
                                                 </a>
