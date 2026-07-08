@@ -14,7 +14,7 @@
                     <div class="absolute -bottom-8 -left-8 w-52 h-52 bg-primary/10 rounded-full blur-3xl">
                     </div>
                     <div class="absolute top-6 left-6 z-20 bg-primary text-white px-5 py-3 rounded-full shadow-lg">
-                        {{ $founder->sub_title }}
+                        {{ $founder->sub_title ?? '' }}
                     </div>
                     <img src="{{ asset('uploads/original/' . $founder->banner) }}" alt="{{ $founder->post_title }}"
                         class="relative z-10 rounded-[40px] shadow-[0_30px_70px_rgba(0,0,0,0.18)] w-full h-[560px] object-cover transition duration-500 hover:scale-[1.01]"

@@ -160,7 +160,7 @@
                         are here to help.
                     </p>
                     <div class="flex flex-wrap justify-center gap-4 mt-10">
-                        <a href="{{ url('page/bookappointment.html')) }}"
+                        <a href="{{ url('page/bookappointment.html') }}"
                             class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-primary btn-luxury font-semibold hover:scale-105 transition">
                             <i class="ri-calendar-line"></i>
                             Book Appointment

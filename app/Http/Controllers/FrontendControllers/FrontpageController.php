@@ -64,14 +64,14 @@ class FrontpageController extends Controller
     if ($tmpl['template']) {
       $data['template'] = $data['template'];
     }
-
+   $posts = collect();
     if ($data) {
       $posts = PostModel::where('post_type', $data->id)->with('associatePosts')->orderBy('post_order', 'asc')->paginate(6);
     }
-    // dd($posts);
+    // dd($posts->first());
     $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
 
-    $posts = collect();
+ 
     $categories = collect();
     $galleries = collect();
     $pricingItems = collect();
@@ -99,6 +99,7 @@ class FrontpageController extends Controller
     }
 
     $founder = $posts->first();
+    // dd($data);
 
     return view('themes.default.' . $data['template'] . '', compact('data', 'offers' ,'documents', 'founder', 'posts', 'setting', 'categories', 'pricingItems', 'galleries', 'services'));
   }

@@ -27,7 +27,7 @@
     {{-- select 2 cdn and css --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
- 
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pricing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
@@ -88,13 +88,45 @@
         }
 
         /* Dropdown Arrow */
-        .select2-container--default .select2-selection__arrow {
+        /* .select2-container--default .select2-selection__arrow {
             height: 54px;
             right: 14px;
         }
 
         .select2-container--default .select2-selection__arrow b {
             border-color: var(--primary) transparent transparent transparent;
+        } */
+        /* Dropdown Arrow */
+        .select2-container--default .select2-selection__arrow {
+            position: absolute;
+            top: 15px !important;
+            right: 16px;
+            width: 20px;
+            height: 100%;
+        }
+
+        /* Hide default arrow */
+        .select2-container--default .select2-selection__arrow b {
+            display: none;
+        }
+
+        /* Custom chevron */
+        .select2-container--default .select2-selection__arrow::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 7px;
+            height: 7px;
+            border-right: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
+            transform: translate(-50%, -60%) rotate(45deg);
+            transition: transform .25s ease;
+        }
+
+        /* Rotate when open */
+        .select2-container--open .select2-selection__arrow::after {
+            transform: translate(-50%, -40%) rotate(-135deg);
         }
 
         /* Dropdown */
