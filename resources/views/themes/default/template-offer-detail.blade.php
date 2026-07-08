@@ -368,15 +368,10 @@
 
                                 <div
                                     class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center group-hover:translate-x-1 transition">
-
                                     <i class="ri-arrow-right-line text-xl"></i>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </a>
                 @endforeach
 

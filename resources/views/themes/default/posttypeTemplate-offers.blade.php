@@ -14,7 +14,8 @@
                     <div class="swiper-wrapper">
                         @foreach ($posts->take(3) as $offer)
                             <div class="swiper-slide">
-                                <div class="bg-white rounded-[40px] overflow-hidden shadow-xl h-[280px] sm:h-[350px] lg:h-[520px]">
+                                <div
+                                    class="bg-white rounded-[40px] overflow-hidden shadow-xl h-[280px] sm:h-[350px] lg:h-[520px]">
 
                                     <div class="grid lg:grid-cols-2 h-full">
 
@@ -64,11 +65,12 @@
                                         </div>
 
                                         <div class="order-1 lg:order-2 relative h-full">
-
-                                            <img src="{{ asset('uploads/original/' . $offer->banner) }}"
-                                                alt="{{ $offer->post_title }}"
-                                                class="featured-slide-image w-full h-[280px] sm:h-[350px] lg:h-[520px] object-cover">
-
+                                            <a
+                                                href="{{ url('page/bookappointment.html?service=' . urlencode($offer->post_title . '|offer')) }}">
+                                                <img src="{{ asset('uploads/original/' . $offer->banner) }}"
+                                                    alt="{{ $offer->post_title }}"
+                                                    class="featured-slide-image w-full h-[280px] sm:h-[350px] lg:h-[520px] object-cover">
+                                            </a>
                                         </div>
 
                                     </div>
@@ -117,10 +119,11 @@
                             class="group bg-white rounded-[32px] overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
 
                             <div class="overflow-hidden">
-
-                                <img src="{{ asset('uploads/original/' . $offer->banner) }}" alt="{{ $offer->post_title }}"
-                                    class="w-full h-72 object-cover group-hover:scale-110 transition duration-700">
-
+                                <a href="{{ url(geturl($offer->uri, $offer->page_key)) }}">
+                                    <img src="{{ asset('uploads/original/' . $offer->banner) }}"
+                                        alt="{{ $offer->post_title }}"
+                                        class="w-full h-72 object-cover group-hover:scale-110 transition duration-700">
+                                </a>
                             </div>
 
                             <div class="p-8">

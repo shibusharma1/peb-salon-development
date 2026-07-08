@@ -1,6 +1,6 @@
 @extends('themes.default.common.master')
 @section('content')
-    <section class="relative min-h-[70vh] md:min-h-[85vh] lg:h-screen overflow-hidden">
+    <section class="relative z-30 min-h-[60vh] md:min-h-[85vh] lg:h-screen flex items-center justify-center">
         <!-- Background Image -->
         <img src="{{ asset('assets/img/background/bg4.jpg') }}"
             class="absolute inset-0 w-full h-full object-cover [transform:scaleX(-1)] z-0">
@@ -114,9 +114,11 @@
                         class="group bg-white rounded-[32px] overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
 
                         <div class="overflow-hidden">
+                            <a href="{{ url(geturl($service['uri'], $service['page_key'])) }}">
                             <img src="{{ asset('uploads/original/' . $service->page_thumbnail) }}"
                                 alt="{{ $service->post_title }}"
                                 class="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover group-hover:scale-110 transition duration-700">
+                            </a>
                         </div>
 
                         <div class="p-5 md:p-6 lg:p-8">

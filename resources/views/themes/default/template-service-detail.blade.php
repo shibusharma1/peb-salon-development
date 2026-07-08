@@ -44,9 +44,11 @@
                     <div class="mt-8 overflow-hidden rounded-[32px] shadow-xl bg-white sticky top-28" data-aos="fade-left"
                         data-aos-delay="200">
                         <div class="relative">
-                            <img src="{{ asset('uploads/original/' . $offer->page_thumbnail) }}"
-                                class="h-64 w-full object-cover transition duration-[2000ms] hover:scale-105"
-                                data-aos="zoom-out" data-aos-duration="100">
+                            <a href="{{ url($offer->uri . '.html') }}">
+                                <img src="{{ asset('uploads/original/' . $offer->page_thumbnail) }}"
+                                    class="h-64 w-full object-cover transition duration-[2000ms] hover:scale-105"
+                                    data-aos="zoom-out" data-aos-duration="100">
+                            </a>
                             <div class="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-full text-sm">
                                 Featured Offer
                             </div>
@@ -67,9 +69,11 @@
                 <!-- RIGHT CONTENT -->
                 <div class="lg:col-span-8 order-1 lg:order-2">
                     <div class="bg-white rounded-[40px] overflow-hidden shadow-xl">
+
                         <img src="{{ asset('uploads/original/' . $data->page_thumbnail) }}"
                             class="w-full h-[280px] sm:h-[320px] lg:h-[380px] object-cover transition duration-[2000ms] hover:scale-105"
                             data-aos="zoom-out" data-aos-duration="1200">
+                        
                         <div class="p-6 lg:p-8">
                             <span class="inline-flex px-4 py-2 rounded-full bg-primary/10 text-primary" data-aos="fade-up"
                                 data-aos-delay="100">
@@ -92,21 +96,22 @@
                         <div class="space-y-4">
 
 
-                                @foreach ($pricing as $item)
-                                    <div
-                                        class="flex justify-between items-center p-5 rounded-2xl bg-light hover:bg-white hover:border hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                                        <span>{{ $item->post_title }}</span>
-                                        <strong class="text-primary text-xl">
-                                            £{{ $item->price }}
-                                        </strong>
-                                    </div>
-                                @endforeach
+                            @foreach ($pricing as $item)
+                                <div
+                                    class="flex justify-between items-center p-5 rounded-2xl bg-light hover:bg-white hover:border hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                                    <span>{{ $item->post_title }}</span>
+                                    <strong class="text-primary text-xl">
+                                        £{{ $item->price }}
+                                    </strong>
+                                </div>
+                            @endforeach
 
 
                         </div>
                         <!-- Add button here -->
                         <div class="mt-6 text-center">
-                            <a href="{{ url('page/bookappointment.html?service=' . urlencode($data->post_title . '|service')) }}" class="btn-primary btn-luxury inline-flex items-center gap-2">
+                            <a href="{{ url('page/bookappointment.html?service=' . urlencode($data->post_title . '|service')) }}"
+                                class="btn-primary btn-luxury inline-flex items-center gap-2">
                                 <i class="ri-calendar-line"></i>
                                 Book Appointment Now
                             </a>

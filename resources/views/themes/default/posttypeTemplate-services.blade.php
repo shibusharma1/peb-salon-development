@@ -15,8 +15,10 @@
                         class="group bg-white rounded-[32px] overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
 
                         <div class="overflow-hidden">
+                            <a href="{{ url(geturl($post['uri'], $post['page_key'])) }}">
                             <img src="{{ asset('uploads/original/' . $post->page_thumbnail) }}" alt="{{ $post->post_title }}"
                                 class="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover group-hover:scale-110 transition duration-700">
+                            </a>    
                         </div>
 
                         <div class="p-5 md:p-6 lg:p-8">
