@@ -119,6 +119,7 @@ class PostController extends Controller
     $post_order = $ord + 1;
     $category = PostCategoryModel::where('post_type', $posttype_id)->get();
 
+
     return view('admin.posts.create', compact('category', 'parent_post', 'templates', 'templates_child', 'post_order'));
   }
 
@@ -347,7 +348,19 @@ class PostController extends Controller
     $posttype_uri = request()->segment(2);
     $posttype = $this->getPostTypeId($posttype_uri);
     $posttype_id = $posttype->id;
-    $parent_post = PostModel::where(['post_type' => $posttype_id, 'post_parent' => 0])->get();
+
+    // $parent_post = PostModel::where(['post_type' => $posttype_id, 'post_parent' => 0])->get();
+    if ($posttype->id == 14) {
+      $parent_post = PostModel::where('post_type', 11)
+        ->where('post_parent', 0)
+        ->orderBy('post_title')
+        ->get();
+    } else {
+      $parent_post = PostModel::where('post_type', $posttype_id)
+        ->where('post_parent', 0)
+        ->get();
+    }
+
     $category = PostCategoryModel::where('post_type', $posttype_id)->get();
 
     $data = PostModel::find($id);

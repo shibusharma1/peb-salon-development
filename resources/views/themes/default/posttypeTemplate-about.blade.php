@@ -4,13 +4,13 @@
 @section('content')
 
     @include('themes.default.common.hero-banner')
-    <section class="section-white overflow-x-hidden">
+    <section class="section-white overflow-x-hidden lg:overflow-x-visible">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Founder -->
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 <!-- Image -->
-                <div class="relative">
+                <div class="relative lg:sticky lg:top-32 self-start">
                     <div class="absolute -bottom-8 -left-8 w-52 h-52 bg-primary/10 rounded-full blur-3xl">
                     </div>
                     <div class="absolute top-6 left-6 z-20 bg-primary text-white px-5 py-3 rounded-full shadow-lg">

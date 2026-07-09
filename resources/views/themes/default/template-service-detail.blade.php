@@ -89,7 +89,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-[40px] shadow-xl p-10 mt-8">
+                    {{-- <div class="bg-white rounded-[40px] shadow-xl p-10 mt-8">
                         <h3 class="heading-font text-3xl mb-6">
                             Pricing
                         </h3>
@@ -118,7 +118,7 @@
 
                         </div>
 
-                    </div>
+                    </div> --}}
                     <div class="bg-white rounded-[40px] shadow-xl p-10 mt-10">
                         <h3 class="heading-font text-3xl">
                             Love This Service?

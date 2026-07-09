@@ -45,9 +45,9 @@
                             </div>
                         </div>
                     @endif
-                    @if (Request::segment(2) == 'career')
+                    @if (Request::segment(2) == 'career' || Request::segment(2) == 'about')
                         <div class="form-group">
-                            <label for="inputStandard" class="col-lg-2 control-label">Position Type</label>
+                            <label for="inputStandard" class="col-lg-2 control-label">Sub Title</label>
                             <div class="col-lg-9">
                                 <div class="bs-component">
                                     <input type="text" id="" name="sub_title" class="form-control"
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     @endif
-                    <?php /*?> ?> ?>
+                    <?php /*?> ?> ?> ?>
 
 
 
@@ -82,7 +82,8 @@
                             </div>
                         </div>
                     </div>
-                    <?php*/?>
+                    <?php*/?> 
+
                     @if (Request::segment(2) != 'pricing')
                         <div class="form-group">
                             <label for="inputSelect" class="col-lg-2 control-label"> Category </label>
@@ -221,21 +222,22 @@
                     </footer>
                     <div class="clearfix"></div>
                 </div>
-@if (Request::segment(2) != 'pricing')
-                <div class="sid_ mb10">
-                    <label class="field select">
-                        <select id="template" name="template">
-                            @foreach ($templates as $key => $template)
-                                <option value="{{ $key }}" {{ $template == $data->template ? 'selected' : '' }}>
-                                    {{ ucfirst($template) }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <i class="arrow"></i>
-                    </label>
-                </div>
+                @if (Request::segment(2) != 'pricing')
+                    <div class="sid_ mb10">
+                        <label class="field select">
+                            <select id="template" name="template">
+                                @foreach ($templates as $key => $template)
+                                    <option value="{{ $key }}"
+                                        {{ $template == $data->template ? 'selected' : '' }}>
+                                        {{ ucfirst($template) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <i class="arrow"></i>
+                        </label>
+                    </div>
 
-                {{-- <div class="sid_ mb10">
+                    {{-- <div class="sid_ mb10">
           <label class="field select">
             <select id="template_child" name="template_child">
               @foreach ($templates_child as $key => $template_child)
@@ -247,131 +249,131 @@
           </label>
         </div> --}}
 
-                <div class="sid_ mb10">
-                    <label class="field text"> Post Order
-                        <input type="number" id="" name="post_order" class="form-control"
-                            placeholder="Post Order" value="{{ $data->post_order }}" />
-                    </label>
-                </div>
-                <?php /* ?> ?> ?>
-                <div class="sid_ mb10">
-                    <label class="field text"> Homepage Order
-                        <input type="number" id="" name="home_order" class="form-control"
-                            placeholder="Insert Order Here" value="{{ $data->home_order }}" />
-                    </label>
-                </div>
-
-                <div class="sid_ mb10">
-                    <div class="hd_show_con">
-                        <input type="checkbox" name="show_in_home" value="{{ $data->show_in_home }}"
-                            {{ $data->show_in_home == 1 ? 'checked' : '' }} />
-                        Show in home <br>
+                    <div class="sid_ mb10">
+                        <label class="field text"> Post Order
+                            <input type="number" id="" name="post_order" class="form-control"
+                                placeholder="Post Order" value="{{ $data->post_order }}" />
+                        </label>
                     </div>
-                </div>
-                <div class="sid_ mb10">
-                    <h4> Icon </h4>
-                    <label class="field select">
-                        <select id="template" name="price" style="font-family: 'FontAwesome';">
-                            @if ($data->price != null)
-                                <option value="{{ $data->price }}" selected>{{ $data->price }}</option>
-                            @else
-                                <option value="" selected>Choose Icon</option>
-                            @endif
-                            <option value="coins">&#xf1c0; COINS </option>
-                            <option value="chart-bar">&#xf080; BAR </option>
-                            <option value="chart-line">&#xf201; LINE </option>
-                            <option value="newspaper">&#xf1ea; NEWSPAPER </option>
-                            <option value="user-plus">&#xf007; USER PLUS </option>
-                            <option value="briefcase">&#xf0b1; BRIEFCASE </option>
-                            <option value="lightbulb">&#xf0eb; LIGHTBULB </option>
-                            <option value="glasses">&#xf000; GLASSESS </option>
-                            <option value="clock">&#xf017; CLOCK </option>
-                            <option value="bullseye">&#xf140; BULLSEYE </option>
-                            <option value="wallet">&#xf07b; WALLET </option>
-                            <option value="star"> &#xf005; STAR</option>
-                            <option value="handshake"> HANDSHAKE </option>
-                            <option value="fingerprint">FINGERPRINT </option>
+                    <?php /* ?> ?> ?> ?>
+                    <div class="sid_ mb10">
+                        <label class="field text"> Homepage Order
+                            <input type="number" id="" name="home_order" class="form-control"
+                                placeholder="Insert Order Here" value="{{ $data->home_order }}" />
+                        </label>
+                    </div>
 
-
-                        </select> <i class="arrow"></i>
-                    </label>
-                </div>
-
-
-
-
-
-                <div class="sid_ mb10">
-                    <h4> Thumbnail </h4>
-                    <div class="hd_show_con">
-                        <div id="xedit-demo">
-                            @if ($data->thumbnail)
-                                <span class="thumbnailid{{ $data->id }}">
-                                    <a href="#{{ $data->id }}" class="delete_thumbnail">X</a>
-                                    <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->thumbnail) }}"
-                                        width="150" />
-                                    <hr>
-                                </span>
-                            @endif
-                            <input type="file" name="thumbnail" />
+                    <div class="sid_ mb10">
+                        <div class="hd_show_con">
+                            <input type="checkbox" name="show_in_home" value="{{ $data->show_in_home }}"
+                                {{ $data->show_in_home == 1 ? 'checked' : '' }} />
+                            Show in home <br>
                         </div>
                     </div>
-                </div>
-                <?php */?>
-                <!-- <div class="sid_ mb10">
-                  <h4> PDF </h4>
-                  <div class="hd_show_con">
-                    <div id="xedit-demo">
-                      @if ($data->icon)
+                    <div class="sid_ mb10">
+                        <h4> Icon </h4>
+                        <label class="field select">
+                            <select id="template" name="price" style="font-family: 'FontAwesome';">
+                                @if ($data->price != null)
+                                    <option value="{{ $data->price }}" selected>{{ $data->price }}</option>
+                                @else
+                                    <option value="" selected>Choose Icon</option>
+                                @endif
+                                <option value="coins">&#xf1c0; COINS </option>
+                                <option value="chart-bar">&#xf080; BAR </option>
+                                <option value="chart-line">&#xf201; LINE </option>
+                                <option value="newspaper">&#xf1ea; NEWSPAPER </option>
+                                <option value="user-plus">&#xf007; USER PLUS </option>
+                                <option value="briefcase">&#xf0b1; BRIEFCASE </option>
+                                <option value="lightbulb">&#xf0eb; LIGHTBULB </option>
+                                <option value="glasses">&#xf000; GLASSESS </option>
+                                <option value="clock">&#xf017; CLOCK </option>
+                                <option value="bullseye">&#xf140; BULLSEYE </option>
+                                <option value="wallet">&#xf07b; WALLET </option>
+                                <option value="star"> &#xf005; STAR</option>
+                                <option value="handshake"> HANDSHAKE </option>
+                                <option value="fingerprint">FINGERPRINT </option>
+
+
+                            </select> <i class="arrow"></i>
+                        </label>
+                    </div>
+
+
+
+
+
+                    <div class="sid_ mb10">
+                        <h4> Thumbnail </h4>
+                        <div class="hd_show_con">
+                            <div id="xedit-demo">
+                                @if ($data->thumbnail)
+                                    <span class="thumbnailid{{ $data->id }}">
+                                        <a href="#{{ $data->id }}" class="delete_thumbnail">X</a>
+                                        <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->thumbnail) }}"
+                                            width="150" />
+                                        <hr>
+                                    </span>
+                                @endif
+                                <input type="file" name="thumbnail" />
+                            </div>
+                        </div>
+                    </div>
+                    <?php */?>
+                    <!-- <div class="sid_ mb10">
+                      <h4> PDF </h4>
+                      <div class="hd_show_con">
+                        <div id="xedit-demo">
+                          @if ($data->icon)
     <span class="iconid{{ $data->id }}">
-                          {{-- <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $data->icon) }}" width="150" /> --}}
-                          <a href="{{ asset('uploads/medium/' . $data->icon) }}" target="_blank">
-                            📄{{ Str::limit($data->icon, 30) }}
-                          </a>
-                          <br>
-                          <a href="#{{ $data->id }}" class="delete_icon" style="color: red;">X
-                            Remove
-                          </a><br><br>
-                        </span>
+                              {{-- <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $data->icon) }}" width="150" /> --}}
+                              <a href="{{ asset('uploads/medium/' . $data->icon) }}" target="_blank">
+                                📄{{ Str::limit($data->icon, 30) }}
+                              </a>
+                              <br>
+                              <a href="#{{ $data->id }}" class="delete_icon" style="color: red;">X
+                                Remove
+                              </a><br><br>
+                            </span>
     @endif
-                      <input type="file" name="icon" />
-                    </div>
-                  </div>
-                </div> -->
+                          <input type="file" name="icon" />
+                        </div>
+                      </div>
+                    </div> -->
 
-                <div class="sid_ mb10">
-                    <h4> Featured Image </h4>
-                    <div class="hd_show_con">
-                        <div id="xedit-demo">
-                            @if ($data->page_thumbnail)
-                                <span class="page_thumbnailid{{ $data->id }}">
-                                    <a href="#{{ $data->id }}" class="delete_pagethumbnail">X</a>
-                                    <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->page_thumbnail) }}"
-                                        width="150" />
-                                    <hr>
-                                </span>
-                            @endif
-                            <input type="file" name="page_thumbnail" />
+                    <div class="sid_ mb10">
+                        <h4> Featured Image </h4>
+                        <div class="hd_show_con">
+                            <div id="xedit-demo">
+                                @if ($data->page_thumbnail)
+                                    <span class="page_thumbnailid{{ $data->id }}">
+                                        <a href="#{{ $data->id }}" class="delete_pagethumbnail">X</a>
+                                        <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->page_thumbnail) }}"
+                                            width="150" />
+                                        <hr>
+                                    </span>
+                                @endif
+                                <input type="file" name="page_thumbnail" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="sid_ mb10">
-                    <h4> Banner </h4>
-                    <div class="hd_show_con">
-                        <div id="xedit-demo">
-                            @if ($data->banner)
-                                <span class="bannerid{{ $data->id }}">
-                                    <a href="#{{ $data->id }}" class="delete_banner">X</a>
-                                    <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->banner) }}"
-                                        width="150" />
-                                    <hr>
-                                </span>
-                            @endif
-                            <input type="file" name="banner" />
+                    <div class="sid_ mb10">
+                        <h4> Banner </h4>
+                        <div class="hd_show_con">
+                            <div id="xedit-demo">
+                                @if ($data->banner)
+                                    <span class="bannerid{{ $data->id }}">
+                                        <a href="#{{ $data->id }}" class="delete_banner">X</a>
+                                        <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->banner) }}"
+                                            width="150" />
+                                        <hr>
+                                    </span>
+                                @endif
+                                <input type="file" name="banner" />
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
 
             </div>

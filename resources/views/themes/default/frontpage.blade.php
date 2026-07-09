@@ -1,6 +1,6 @@
 @extends('themes.default.common.master')
 @section('content')
-    <section class="relative z-30 min-h-[60vh] md:min-h-[85vh] lg:h-screen flex items-center justify-center">
+    <section class="relative min-h-[650px] md:min-h-[720px] lg:h-screen overflow-hidden flex items-center">
         <!-- Background Image -->
         <img src="{{ asset('assets/img/background/bg4.jpg') }}"
             class="absolute inset-0 w-full h-full object-cover [transform:scaleX(-1)] z-0">
@@ -11,21 +11,31 @@
             class="absolute inset-0 w-full h-full object-cover object-[65%_center]">
 
         <!-- Dark Overlay -->
-        <div class="absolute inset-0 bg-black/40 z-20"></div>
-        
+        {{-- <div class="absolute inset-0 bg-black/40 z-20"></div> --}}
+        <div class="absolute inset-0 z-20 bg-gradient-to-r from-black/70 via-black/45 to-black/15"> </div>
+
         <!-- Text -->
-        <div class="relative z-30 h-full flex items-center">
+        {{-- <div class="relative z-30 h-full flex items-center">
             <div class="max-w-7xl mx-auto px-4">
-                <div class="max-w-md md:max-w-xl lg:max-w-4xl">
-                    <span class="inline-block px-5 py-2 rounded-full bg-white/20 backdrop-blur text-white">
+                <div class="max-w-md md:max-w-xl lg:max-w-4xl"> --}}
+        <div class="relative z-30 w-full">
+            <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-10 xl:px-12">
+                <div class="max-w-xl lg:max-w-3xl py-24 md:py-32 lg:py-40">
+                    {{-- <span class="inline-block px-5 py-2 rounded-full bg-white/20 backdrop-blur text-white"> --}}
+                    <span
+                        class="body-font inline-flex items-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2 text-[11px] md:text-xs font-semibold uppercase tracking-[3px] text-white">
                         {{ $banners->title }}
                     </span>
-                    <h1 class="text-white text-3xl md:text-4xl lg:text-5xl mt-4 md:mt-8 leading-tight">
+                    {{-- <h1 class="text-white text-3xl md:text-4xl lg:text-5xl mt-4 md:mt-8 leading-tight"> --}}
+                    <h1
+                        class="heading-font mt-6 text-white font-semibold leading-[1.1] tracking-[-0.02em] text-[clamp(2.5rem,5vw,5rem)] mb-8">
                         <span id="heroText" data-text="{{ strip_tags($banners->caption) }}"></span>
                         <span class="text-primary animate-pulse">|</span>
                     </h1>
-                    <p class="text-white/90 text-base lg:text-[17px] mt-5 max-w-xl">
-                        
+                    {{-- <p class="text-white/90 text-base lg:text-[17px] mt-5 max-w-xl"> --}}
+                    {{-- <p class="body-font mt-6 max-w-lg text-white/90 font-normal leading-8"> --}}
+                    <p
+                        class="body-font mt-8 max-w-lg lg:max-w-3xl text-[clamp(1rem,1.2vw,1.125rem)] font-light leading-9 tracking-[0.01em] text-white/85">
                         {{ strip_tags($banners->content) }}
 
                     </p>
@@ -79,8 +89,17 @@
                         </div>
                     </div>
 
-                    <div class="about-content mt-6">
+                    {{-- <div class="about-content mt-6 about-clamp">
                         {!! html_entity_decode(html_entity_decode($about->post_content)) !!}
+                    </div> --}}
+
+                    <!-- Button -->
+                    <div class="mt-8">
+                        <a href="{{ url('page/about.html') }}"
+                            class="inline-flex items-center gap-3 px-8 py-4 rounded-full btn-primary btn-luxury text-white font-semibold shadow-lg hover:scale-105 transition">
+                            Read More
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -115,9 +134,9 @@
 
                         <div class="overflow-hidden">
                             <a href="{{ url(geturl($service['uri'], $service['page_key'])) }}">
-                            <img src="{{ asset('uploads/original/' . $service->page_thumbnail) }}"
-                                alt="{{ $service->post_title }}"
-                                class="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover group-hover:scale-110 transition duration-700">
+                                <img src="{{ asset('uploads/original/' . $service->page_thumbnail) }}"
+                                    alt="{{ $service->post_title }}"
+                                    class="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover group-hover:scale-110 transition duration-700">
                             </a>
                         </div>
 
